@@ -23,10 +23,12 @@ namespace Практика_Задание_12_2_3
             Console.WriteLine("Массив упорядоченный по убыванию");
             //Массив упорядоченный по убыванию
 
+            int num = 0;
             int[] descOrderedArray = new int[n];
             for (int i = n - 1; i >= 0; i--)
             {
-                descOrderedArray[i] = i;
+                descOrderedArray[num] = i;
+                num++;
                 Console.Write($"{descOrderedArray[i]} ");
             }
             Console.WriteLine();
@@ -97,7 +99,6 @@ namespace Практика_Задание_12_2_3
             var temp = e1;
             e1 = e2;
             e2 = temp;
-            transfers++;
         }
 
         //сортировка перемешиванием
@@ -109,23 +110,28 @@ namespace Практика_Задание_12_2_3
                 //проход слева направо
                 for (var j = i; j < array.Length - i - 1; j++)
                 {
-                    comparisons++;
+                    
                     if (array[j] > array[j + 1])
                     {
                         Swap_2(ref array[j], ref array[j + 1]);
+                        transfers++;
                         swapFlag = true;
+                        comparisons++;
                     }
+                    comparisons++;
                 }
 
                 //проход справа налево
                 for (var j = array.Length - 2 - i; j > i; j--)
                 {
-                    comparisons++;
                     if (array[j - 1] > array[j])
                     {
                         Swap_2(ref array[j - 1], ref array[j]);
+                        transfers++;
                         swapFlag = true;
+                        comparisons++;
                     }
+                    comparisons++;
                 }
 
                 //если обменов не было выходим
@@ -145,7 +151,6 @@ namespace Практика_Задание_12_2_3
             var temp = e1;
             e1 = e2;
             e2 = temp;
-            transfers++;
         }
 
         //сортировка вставками
