@@ -40,6 +40,10 @@ namespace Практика_Задание_12_2_3
                 unorderedArray[i] = rand.Next(-100, 100);
                 Console.Write($"{unorderedArray[i]} ");
             }
+            int[] ascOrderedArray2 = (int [])ascOrderedArray.Clone();
+            int[] descOrderedArray2 = (int[])descOrderedArray.Clone();
+            int[] unorderedArray2 = (int[])unorderedArray.Clone();
+
             Console.WriteLine();
 
             Console.WriteLine("Отсортированный упорядоченный по возрастанию массив: {0}", string.Join(", ", ShakerSort(ascOrderedArray)));
@@ -60,19 +64,19 @@ namespace Практика_Задание_12_2_3
             transfers = 0;
             comparisons = 0;
 
-            Console.WriteLine("Отсортированный упорядоченный по возрастанию массив: {0}", string.Join(", ", InsertionSort(ascOrderedArray)));
+            Console.WriteLine("Отсортированный упорядоченный по возрастанию массив: {0}", string.Join(", ", InsertionSort(ascOrderedArray2)));
             Console.WriteLine($"Счетчик пересылок: {transfers}");
             Console.WriteLine($"Счетчик сравнений: {comparisons}");
             transfers = 0;
             comparisons = 0;
 
-            Console.WriteLine("Отсортированный упорядоченный по убыванию массив: {0}", string.Join(", ", InsertionSort(descOrderedArray)));
+            Console.WriteLine("Отсортированный упорядоченный по убыванию массив: {0}", string.Join(", ", InsertionSort(descOrderedArray2)));
             Console.WriteLine($"Счетчик пересылок: {transfers}");
             Console.WriteLine($"Счетчик сравнений: {comparisons}");
             transfers = 0;
             comparisons = 0;
 
-            Console.WriteLine("Отсортированный неупорядоченный массив: {0}", string.Join(", ", InsertionSort(unorderedArray)));
+            Console.WriteLine("Отсортированный неупорядоченный массив: {0}", string.Join(", ", InsertionSort(unorderedArray2)));
             Console.WriteLine($"Счетчик пересылок: {transfers}");
             Console.WriteLine($"Счетчик сравнений: {comparisons}");
             transfers = 0;
@@ -151,17 +155,17 @@ namespace Практика_Задание_12_2_3
             {
                 var key = array[i];
                 var j = i;
-                comparisons++;
+                
                 while ((j > 1) && (array[j - 1] > key))
                 {
                     Swap_3(ref array[j - 1], ref array[j]);
+                    transfers++;
                     j--;
+                    comparisons++;
                 }
-
+                comparisons++;
                 array[j] = key;
-                transfers++;
             }
-
             return array;
         }
     }
